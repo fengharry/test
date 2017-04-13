@@ -24,31 +24,29 @@ add_custom_target(install
 			COMMAND sudo ldconfig)
 add_dependencies(install lib1)
 
-add_executable(insn_decode insn_decode.cpp)
-target_link_libraries(insn_decode instructionAPI)
+add_executable(decode_insn Dyninst/decode_instruction.cpp)
+target_link_libraries(decode_insn instructionAPI)
 
-add_executable(ParseAPI_test ParseAPI_test.cpp)
-target_link_libraries(ParseAPI_test dyninstAPI parseAPI symtabAPI instructionAPI)
+add_executable(SymtabAPI_disassemble Dyninst/SymtabAPI_disassemble.cpp)
+target_link_libraries(SymtabAPI_disassemble dyninstAPI parseAPI symtabAPI instructionAPI)
 
-add_executable(ParseAPI_test2 ParseAPI_test2.cpp)
-target_link_libraries(ParseAPI_test2 dyninstAPI parseAPI patchAPI symtabAPI instructionAPI)
+add_executable(CodeObject_disassemble Dyninst/CodeObject_disassemble.cpp)
+target_link_libraries(CodeObject_disassemble dyninstAPI parseAPI patchAPI symtabAPI instructionAPI)
 
-add_executable(BPatch_test BPatch_test.cpp)
-target_link_libraries(BPatch_test dyninstAPI instructionAPI)
+add_executable(BPatch_disassemble Dyninst/BPatch_disassemble.cpp)
+target_link_libraries(BPatch_disassemble dyninstAPI instructionAPI)
 
-add_executable(BPatch_test2 BPatch_test2.cpp)
-target_link_libraries(BPatch_test2 dyninstAPI instructionAPI patchAPI)
+add_executable(insert_1function Dyninst/insert_1function.cpp)
+target_link_libraries(insert_1function dyninstAPI instructionAPI patchAPI)
 
-add_executable(BPatch_test3 BPatch_test3.cpp)
-target_link_libraries(BPatch_test3 dyninstAPI patchAPI)
+add_executable(insert_printf_all Dyninst/insert_printf_all.cpp)
+target_link_libraries(insert_printf_all dyninstAPI patchAPI)
 
 add_executable(asm_test asm_test.cpp)
-
-add_executable(test_chrono test_chrono.cpp)
-
 add_executable(aesenc aesenc.cpp)
 
-add_executable(test_gettimeofday test_gettimeofday.cpp)
+add_executable(chrono testAPI/chrono.cpp)
+add_executable(gettimeofday testAPI/gettimeofday.cpp)
 
-add_executable(test_mutex test_mutex.cpp)
-target_link_libraries(test_mutex pthread)
+add_executable(mutex testAPI/mutex.cpp)
+target_link_libraries(mutex pthread)
