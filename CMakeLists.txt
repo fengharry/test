@@ -39,6 +39,9 @@ target_link_libraries(BPatch_test dyninstAPI instructionAPI)
 add_executable(BPatch_test2 BPatch_test2.cpp)
 target_link_libraries(BPatch_test2 dyninstAPI instructionAPI patchAPI)
 
+add_executable(BPatch_test3 BPatch_test3.cpp)
+target_link_libraries(BPatch_test3 dyninstAPI patchAPI)
+
 add_executable(asm_test asm_test.cpp)
 
 add_executable(test_chrono test_chrono.cpp)

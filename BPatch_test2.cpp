@@ -58,7 +58,9 @@ int main(int argc, char **argv)
 
     appBin->insertSnippet(lib1Call, *points);
 
-    appBin->writeFile("test_app2");
+    string outName = binaryPath;
+    outName += ".out";
+    appBin->writeFile(outName.c_str());
 
     return 0;
 }
