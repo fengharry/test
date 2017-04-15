@@ -50,3 +50,6 @@ add_executable(gettimeofday testAPI/gettimeofday.cpp)
 
 add_executable(mutex testAPI/mutex.cpp)
 target_link_libraries(mutex pthread)
+
+add_executable(openssl testAPI/openssl.cpp)
+target_link_libraries(openssl crypto)
