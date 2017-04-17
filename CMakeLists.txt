@@ -53,3 +53,5 @@ target_link_libraries(mutex pthread)
 
 add_executable(openssl testAPI/openssl.cpp)
 target_link_libraries(openssl crypto)
+
+add_executable(map testAPI/map.cpp)
