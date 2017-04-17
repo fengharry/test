@@ -35,10 +35,13 @@ int main(int argc, char **argv)
         cerr << "Failed to open binary\n";
         return -1;
     }
-    appBin->loadLibrary("liblib1.so");
+    appBin->loadLibrary("libtest.so");
 
     // get image
     BPatch_image *appImage = appBin->getImage ();
+
+	// save all registers
+	bpatch.setLivenessAnalysis(false);
 
     // find main entry points
     std::vector<BPatch_function*> mainFuncs;
@@ -46,17 +49,19 @@ int main(int argc, char **argv)
     std::vector<BPatch_point*>* points;
     points = mainFuncs[0]->findPoint(BPatch_locEntry);
 
-    // find lib1.so function
-    std::vector<BPatch_function*> lib1Funcs;
-    appImage->findFunction("lib1_func1", lib1Funcs);
+    // find libtest.so function
+    std::vector<BPatch_function*> testFuncs;
+    appImage->findFunction("test_func1", testFuncs);
 
     // prepare function parameters
     std::vector<BPatch_snippet*> funcArgs;
+    BPatch_snippet* name = new BPatch_constExpr("test_func1 called!\n");
+    funcArgs.push_back(name);
 
     // generate function call
-    BPatch_funcCallExpr lib1Call(*(lib1Funcs[0]), funcArgs);
+    BPatch_funcCallExpr testCall(*(testFuncs[0]), funcArgs);
 
-    appBin->insertSnippet(lib1Call, *points);
+    appBin->insertSnippet(testCall, *points);
 
     string outName = binaryPath;
     outName += ".out";

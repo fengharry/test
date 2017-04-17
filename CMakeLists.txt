@@ -17,12 +17,12 @@ include_directories($ENV{DYNINST_ROOT}/common/src)
 
 add_executable(test_app test_app.cpp)
 
-add_library(lib1 SHARED lib1.cpp)
+add_library(test SHARED libtest.cpp)
 
 add_custom_target(install 
-			COMMAND sudo cp liblib1.so /usr/local/lib/
+			COMMAND sudo cp libtest.so /usr/local/lib/
 			COMMAND sudo ldconfig)
-add_dependencies(install lib1)
+add_dependencies(install test)
 
 add_executable(decode_insn dyninst/decode_instruction.cpp)
 target_link_libraries(decode_insn instructionAPI)

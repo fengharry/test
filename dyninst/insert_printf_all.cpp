@@ -39,19 +39,14 @@ int main(int argc, char **argv)
     int muduleNum = modules->size();
     cout << "module number: " << muduleNum << "\n\n";
 
-    // load libc for printf
-    appBin->loadLibrary("libc.so.6");
+	// save all registers
+	bpatch.setLivenessAnalysis(false);
 
-    // find printf
-    vector<BPatch_function*> printfFuncs;
-    appImage->findFunction("printf", printfFuncs);
-    if (printfFuncs.size() == 0)
-    {
-        cerr << "Could not find printf\n";
-        return -1;
-    }
+	// load libtest.so
+    appBin->loadLibrary("libtest.so");
+    std::vector<BPatch_function*> testFuncs;
+    appImage->findFunction("test_func1", testFuncs);
 
-    cout << "module number: " << modules->size() << "\n\n";
     for (int i=0; i<muduleNum; i++)
     {
         char moduleName[1024];
@@ -69,13 +64,13 @@ int main(int argc, char **argv)
 
             vector<BPatch_point*>* points = func->findPoint(BPatch_locEntry);
 
-            vector<BPatch_snippet*> printfArgs;
-            BPatch_snippet* fmt = new BPatch_constExpr(funName.c_str());
-            printfArgs.push_back(fmt);
+            vector<BPatch_snippet*> funcArgs;
+            BPatch_snippet* name = new BPatch_constExpr(funName.c_str());
+            funcArgs.push_back(name);
 
-            BPatch_funcCallExpr printfCall(*(printfFuncs[0]), printfArgs);
+            BPatch_funcCallExpr testCall(*(testFuncs[0]), funcArgs);
 
-            appBin->insertSnippet(printfCall, *points);
+            appBin->insertSnippet(testCall, *points);
         }
         cout << "\n";
     }

@@ -1,5 +1,5 @@
 /*
- * lib1.cpp
+ * libtest.cpp
  *
  *  Created on: Apr 1, 2017
  *      Author: harry
@@ -8,9 +8,9 @@
 #include <iostream>
 using namespace std;
 
-void lib1_func1()
+void test_func1(const char* name)
 {
-    cout << "lib1_func1 called \n";
+    cout << name;
 }
 
 
