@@ -24,22 +24,22 @@ add_custom_target(install
 			COMMAND sudo ldconfig)
 add_dependencies(install lib1)
 
-add_executable(decode_insn Dyninst/decode_instruction.cpp)
+add_executable(decode_insn dyninst/decode_instruction.cpp)
 target_link_libraries(decode_insn instructionAPI)
 
-add_executable(SymtabAPI_disassemble Dyninst/SymtabAPI_disassemble.cpp)
+add_executable(SymtabAPI_disassemble dyninst/SymtabAPI_disassemble.cpp)
 target_link_libraries(SymtabAPI_disassemble dyninstAPI parseAPI symtabAPI instructionAPI)
 
-add_executable(CodeObject_disassemble Dyninst/CodeObject_disassemble.cpp)
+add_executable(CodeObject_disassemble dyninst/CodeObject_disassemble.cpp)
 target_link_libraries(CodeObject_disassemble dyninstAPI parseAPI patchAPI symtabAPI instructionAPI)
 
-add_executable(BPatch_disassemble Dyninst/BPatch_disassemble.cpp)
+add_executable(BPatch_disassemble dyninst/BPatch_disassemble.cpp)
 target_link_libraries(BPatch_disassemble dyninstAPI instructionAPI)
 
-add_executable(insert_1function Dyninst/insert_1function.cpp)
+add_executable(insert_1function dyninst/insert_1function.cpp)
 target_link_libraries(insert_1function dyninstAPI instructionAPI patchAPI)
 
-add_executable(insert_printf_all Dyninst/insert_printf_all.cpp)
+add_executable(insert_printf_all dyninst/insert_printf_all.cpp)
 target_link_libraries(insert_printf_all dyninstAPI patchAPI)
 
 add_executable(asm_test asm_test.cpp)
