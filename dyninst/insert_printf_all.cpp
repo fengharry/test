@@ -52,32 +52,34 @@ int main(int argc, char **argv)
         char moduleName[1024];
         (*modules)[i]->getName(moduleName, 1024);
         string strModule(moduleName);
-        cout << "module name: " << strModule << "\n";
 
         vector <BPatch_function *> * funcs = (*modules)[i]->getProcedures();
-        cout << funcs->size() << " functions in the module \n\n";
         for(BPatch_function * func : *funcs)
         {
             string funName = func->getName();
-            funName = "####\t" + funName + "\n";
-            cout << funName;
 
-            vector<BPatch_point*>* points = func->findPoint(BPatch_locEntry);
+            if(funName.find("ecb") != string::npos)
+            {
+                funName = "####\t" + strModule + ": " + funName + "\n";
+                cout << funName;
 
-            vector<BPatch_snippet*> funcArgs;
-            BPatch_snippet* name = new BPatch_constExpr(funName.c_str());
-            funcArgs.push_back(name);
+                vector<BPatch_point*>* points = func->findPoint(BPatch_locEntry);
+            	vector<BPatch_snippet*> funcArgs;
+            	BPatch_snippet* name = new BPatch_constExpr(funName.c_str());
+            	funcArgs.push_back(name);
 
-            BPatch_funcCallExpr testCall(*(testFuncs[0]), funcArgs);
+            	BPatch_funcCallExpr testCall(*(testFuncs[0]), funcArgs);
 
-            appBin->insertSnippet(testCall, *points);
+            	appBin->insertSnippet(testCall, *points);
+			}
         }
-        cout << "\n";
     }
+	cout << "\n";
 
     string outName = binaryPath;
     outName += ".out";
     appBin->writeFile(outName.c_str());
+	cout << "write to file " << outName << "\n";
 
     return 0;
 }

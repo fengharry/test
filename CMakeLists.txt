@@ -55,3 +55,6 @@ add_executable(openssl testAPI/openssl.cpp)
 target_link_libraries(openssl crypto)
 
 add_executable(map testAPI/map.cpp)
+
+add_executable(OpenSSLAESNIDemo testAPI/OpenSSLAESNIDemo.cpp)
+target_link_libraries(OpenSSLAESNIDemo crypto)
