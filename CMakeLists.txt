@@ -51,10 +51,10 @@ add_executable(gettimeofday testAPI/gettimeofday.cpp)
 add_executable(mutex testAPI/mutex.cpp)
 target_link_libraries(mutex pthread)
 
-add_executable(openssl testAPI/openssl.cpp)
-target_link_libraries(openssl crypto)
+add_executable(AES_cbc testAPI/AES_cbc.cpp)
+target_link_libraries(AES_cbc crypto)
 
 add_executable(map testAPI/map.cpp)
 
-add_executable(OpenSSLAESNIDemo testAPI/OpenSSLAESNIDemo.cpp)
-target_link_libraries(OpenSSLAESNIDemo crypto)
+add_executable(evp_aesecb testAPI/evp_aesecb.cpp)
+target_link_libraries(evp_aesecb crypto)
