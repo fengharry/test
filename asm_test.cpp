@@ -24,5 +24,7 @@ int main()
 	asm("mov %%eax, %0;" : "=r"(a));
 	cout << "a=" << a << "\n";
 
+	asm(".byte 102,15,56,220,209");
+
 	return 0;
 }
