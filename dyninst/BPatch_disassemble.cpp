@@ -41,6 +41,8 @@ int main(int argc, char **argv)
         char moduleName[1024];
         module->getName(moduleName, 1024);
         cout << "module name: " << moduleName << "\n";
+        cout << "module base address: " << module->getBaseAddr()<< "\n";
+        cout << "module load address: " << module->getLoadAddr()<< "\n";
 
         vector <BPatch_function *> * funcs = module->getProcedures();
         cout << funcs->size() << " functions in the module \n\n";
