@@ -58,3 +58,5 @@ add_executable(map testAPI/map.cpp)
 
 add_executable(evp_aesecb testAPI/evp_aesecb.cpp)
 target_link_libraries(evp_aesecb crypto)
+
+add_executable(fstream testAPI/fstream.cpp)
