@@ -60,3 +60,7 @@ add_executable(evp_aesecb testAPI/evp_aesecb.cpp)
 target_link_libraries(evp_aesecb crypto)
 
 add_executable(fstream testAPI/fstream.cpp)
+
+enable_language(ASM-ATT)
+add_executable(hello hello.s)
+add_executable(args args.s)
