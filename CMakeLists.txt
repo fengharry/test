@@ -63,4 +63,3 @@ add_executable(fstream testAPI/fstream.cpp)
 
 enable_language(ASM-ATT)
 add_executable(hello hello.s)
-add_executable(args args.s)
