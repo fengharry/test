@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(dyninst_test)
+project(test_code)
 
 if(NOT DEFINED ENV{DYNINST_ROOT})
 message(FATAL_ERROR "DYNINST_ROOT not defined!!!")
@@ -9,11 +9,23 @@ message(DYNINST_ROOT=$ENV{DYNINST_ROOT})
 endif()
 
 set(CMAKE_VERBOSE_MAKEFILE on)
-set(CMAKE_CXX_COMPILER "g++")
+
+if (CMAKE_COMPILER_IS_GNUCXX)
 set(CMAKE_CXX_FLAGS "-Wall -g -O0 -std=c++11")
+add_definitions(-Dos_linux)
+enable_language(ASM-ATT)
+else (MSVC)
+set(CMAKE_CXX_FLAGS "/Od /Zi /MDd /P /C")
+add_definitions(-Dos_windows)
+add_definitions(-D_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS)
+include_directories($ENV{DYNINST_ROOT}/build/boost/src/boost)
+include_directories("C:/Program Files (x86)/Dyninst/include")
+link_directories("C:/Program Files (x86)/Dyninst/lib")
+enable_language(ASM_MASM)
+endif()
 
 include_directories($ENV{DYNINST_ROOT})
-include_directories($ENV{DYNINST_ROOT}/common/src)
+#include_directories($ENV{DYNINST_ROOT}/common/src)
 
 add_executable(test_app test_app.cpp)
 
@@ -61,5 +73,4 @@ target_link_libraries(evp_aesecb crypto)
 
 add_executable(fstream testAPI/fstream.cpp)
 
-enable_language(ASM-ATT)
-add_executable(hello hello.s)
+add_executable(hello hello.asm)
