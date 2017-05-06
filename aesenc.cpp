@@ -13,12 +13,10 @@ using namespace std;
 #endif
 
 #if defined(os_linux)
-#define COMMA ,
-#define QUOTE(X) #X
-#define ADD_QUOTE(X) QUOTE(X)
-#define ASMs(op, src, dest) asm(ADD_QUOTE(op %0 COMMA %%dest) :: "m"(src))
-#define ASMd(op, src, dest) asm(ADD_QUOTE(op %%src COMMA %0) :: "m"(dest))
-#define ASMn(op, src, dest) asm(ADD_QUOTE(op %src COMMA %dest))
+#define ADD_QUOTE(...) #__VA_ARGS__
+#define ASMs(op, src, dest) asm(ADD_QUOTE(op %0, %%dest) :: "m"(src))
+#define ASMd(op, src, dest) asm(ADD_QUOTE(op %%src, %0) :: "m"(dest))
+#define ASMn(op, src, dest) asm(ADD_QUOTE(op %src, %dest))
 
 #define ALIGN(X)
 #endif
