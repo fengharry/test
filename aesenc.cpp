@@ -3,11 +3,11 @@ using namespace std;
 
 #if defined(os_windows)
 // src is in memory, dest is register
-#define ASMs(op, src, dest) __asm op dest, src
+#define ASMs(op, src, dest) __asm{op dest, src}
 // src is register, dest is in memory
-#define ASMd(op, src, dest) __asm op dest, src
+#define ASMd(op, src, dest) __asm{op dest, srci}
 // both src and dest are in register
-#define ASMn(op, src, dest) __asm op dest, src
+#define ASMn(op, src, dest) __asm{op dest, src}
 
 #define ALIGN(X) __declspec(align(X))
 #endif
