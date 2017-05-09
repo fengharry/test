@@ -8,7 +8,7 @@ using namespace InstructionAPI;
 
 int main(int argc, char **argv)
 {
-    const unsigned char textBuffer[] = {0xff, 0x15, 0x12, 0xff, 0xff, 0xff, 0x90, 0xe8, 0x64, 0x12, 0xd0, 0xff};
+    const unsigned char textBuffer[] = {0x66, 0x45, 0x0f, 0x38, 0xdc, 0x45, 0xb0};
     unsigned int decoded_size = 0;
 
     InstructionDecoder insnDecoder(textBuffer, sizeof(textBuffer), Arch_x86_64);
