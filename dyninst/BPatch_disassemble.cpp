@@ -49,15 +49,15 @@ int main(int argc, char **argv)
         for(BPatch_function * func : *funcs)
         {
             cout << func->getName() << "\n";
-            void *addr_start, *addr_end, *addr;
+            void *addr_start, *addr_end;
             func->getAddressRange(addr_start, addr_end);
             unsigned long func_size = (unsigned long)addr_end - (unsigned long)addr_start;
 
             Function *f = convert(func);
             InstructionDecoder insnDecoder(f->isrc()->getPtrToInstruction(f->addr()), func_size, f->region()->getArch());
             Instruction::Ptr insn;
-            addr = addr_start;
-            while (addr < addr_end)
+            unsigned long addr = (unsigned long)addr_start;
+            while (addr < (unsigned long)addr_end)
             {
                 insn = insnDecoder.decode();
                 addr += insn->size();

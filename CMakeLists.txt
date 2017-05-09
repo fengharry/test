@@ -46,7 +46,7 @@ add_executable(CodeObject_disassemble dyninst/CodeObject_disassemble.cpp)
 target_link_libraries(CodeObject_disassemble dyninstAPI parseAPI patchAPI symtabAPI instructionAPI)
 
 add_executable(BPatch_disassemble dyninst/BPatch_disassemble.cpp)
-target_link_libraries(BPatch_disassemble dyninstAPI instructionAPI)
+target_link_libraries(BPatch_disassemble dyninstAPI instructionAPI ParseAPI)
 
 add_executable(insert_1function dyninst/insert_1function.cpp)
 target_link_libraries(insert_1function dyninstAPI instructionAPI patchAPI)
