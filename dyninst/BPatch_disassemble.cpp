@@ -60,8 +60,15 @@ int main(int argc, char **argv)
             while (addr < (unsigned long)addr_end)
             {
                 insn = insnDecoder.decode();
+                unsigned char* pBuf = (unsigned char*)insn->ptr();
                 addr += insn->size();
-                cout << left << setw(20) << addr << insn->format() << "\n";
+                cout << left << setw(20) << addr;
+                for(int i=0; i<insn->size(); i++)
+                {
+                    cout << setw(2) << hex << (int)pBuf[i] << " ";
+                }
+                cout << left << setw(48-3*insn->size()) << " ";
+                cout << insn->format() << "\n";
             }
             cout << "\n";
         }
