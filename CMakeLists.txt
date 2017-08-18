@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(test_code)
 
 if(NOT DEFINED ENV{DYNINST_ROOT})
-message(FATAL_ERROR "DYNINST_ROOT not defined!!!")
+message(FATAL_INFO "DYNINST_ROOT not defined!!!")
 else()
 message(DYNINST_ROOT=$ENV{DYNINST_ROOT})
 endif()
@@ -71,6 +71,17 @@ add_executable(map testAPI/map.cpp)
 add_executable(evp_aesecb testAPI/evp_aesecb.cpp)
 target_link_libraries(evp_aesecb crypto)
 
+add_executable(evp_sha256 testAPI/evp_sha256.cpp)
+target_link_libraries(evp_sha256 crypto)
+
+add_executable(hmac testAPI/hmac.cpp)
+target_link_libraries(hmac crypto)
+
+add_executable(ecdsa testAPI/ecdsa.cpp)
+target_link_libraries(ecdsa crypto)
+
 add_executable(fstream testAPI/fstream.cpp)
 
 add_executable(hello hello.asm)
+
+add_executable(ioctl testAPI/ioctl.cpp)
