@@ -77,8 +77,11 @@ target_link_libraries(evp_sha256 crypto)
 add_executable(hmac testAPI/hmac.cpp)
 target_link_libraries(hmac crypto)
 
-add_executable(ecdsa testAPI/ecdsa.cpp)
-target_link_libraries(ecdsa crypto)
+add_executable(ecdsa1 testAPI/ecdsa1.cpp)
+target_link_libraries(ecdsa1 crypto)
+
+add_executable(ecdsa2 testAPI/ecdsa2.cpp)
+target_link_libraries(ecdsa2 crypto)
 
 add_executable(fstream testAPI/fstream.cpp)
 
