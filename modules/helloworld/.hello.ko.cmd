@@ -1,0 +1,1 @@
+cmd_/home/harry/Downloads/test/test-code/modules/helloworld/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/harry/Downloads/test/test-code/modules/helloworld/hello.ko /home/harry/Downloads/test/test-code/modules/helloworld/hello.o /home/harry/Downloads/test/test-code/modules/helloworld/hello.mod.o ;  true
