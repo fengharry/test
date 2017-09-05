@@ -88,3 +88,5 @@ add_executable(fstream testAPI/fstream.cpp)
 add_executable(hello hello.asm)
 
 add_executable(ioctl testAPI/ioctl.cpp)
+
+add_executable(macro testAPI/macro.cpp)
