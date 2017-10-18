@@ -90,3 +90,5 @@ add_executable(hello hello.asm)
 add_executable(ioctl testAPI/ioctl.cpp)
 
 add_executable(macro testAPI/macro.cpp)
+
+add_executable(backtrace testAPI/backtrace.cpp)
